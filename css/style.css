@@ -1,0 +1,513 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Noto Sans SC', sans-serif; 
+    background-color: #fce4ec;
+    color: #333;
+    position: relative;
+}
+.body-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: url('../img/bg.webp') no-repeat center center / cover;
+    filter: blur(5px);
+}
+#app {
+    min-height: 100vh;
+    margin: 0;
+    padding: 6px 20px;
+}
+
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.flex { display: flex; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-1 { flex: 1; width: 0; }
+.flex-col { display: flex; flex-direction: column; }
+.ai-c { align-items: center; }
+.jc-sb{ justify-content: space-between; }
+.jc-c { justify-content: center; }
+.jc-sa { justify-content: space-around; }
+.p10{padding:10px;}.p15{padding:15px;}.p20{padding:20px;}
+.m10{margin:10px;}.m15{margin:15px;}.m20{margin:20px;}
+.mb10{margin-bottom:10px;}.mb15{margin-bottom:15px;}.mb20{margin-bottom:20px;}
+.mr10{margin-right:10px;}.mr15{margin-right:15px;}.mr20{margin-right:20px;}
+.mx10{margin:0 10px;}.mx15{margin:0 15px;}.mx20{margin:0 20px;}
+.my10{margin:10px 0;}.my15{margin:15px 0;}.my20{margin:20px 0;}
+.w100{width:100%;}
+.h100{height:100%;}
+
+.container {
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    text-align: center;
+    width: 100%;
+    /* max-width: 800px; */
+    max-width: max(80%, 800px);
+    position: relative;
+    overflow: hidden;
+}
+
+.mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9; /* Ensure it's above other content */
+}
+.audio-img {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 8;
+    width: 30px;
+    cursor: pointer;
+}
+.audio-img.off {
+    opacity: .3;
+}
+.go-top {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 2;
+    padding: 4px;
+}
+
+
+.container::before, .container::after {
+    content: '';
+    position: absolute;
+    background-color: #ffdab9; /* PeachPuff for cute elements */
+    border-radius: 50%;
+    opacity: 0.7;
+}
+
+.container::before {
+    width: 80px;
+    height: 80px;
+    top: -40px;
+    left: -40px;
+}
+
+.container::after {
+    width: 120px;
+    height: 120px;
+    bottom: -60px;
+    right: -60px;
+}
+
+
+header h1 {
+    color: #ff6f91; 
+    font-size: 3em;
+    margin-bottom: 30px;
+}
+header h1:before, header h1:after {
+    content: ''; 
+    margin: 0 10px;
+    background: url(../img/nezha1.webp) no-repeat center center;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    background-size: contain;
+    position: relative;
+    top: 4px;
+}
+
+header p {
+    color: #888;
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+
+.hanzi-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+    height: 70vh;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.hanzi-item {
+    background-color: #ffe4e1; /* MistyRose */
+    border: 3px solid #ff6347;
+    border-radius: 15px;
+    padding: 15px;
+    font-size: 3em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px; /* fixed height for hanzi items */
+    color: #4CAF50;
+}
+
+.hanzi-item.locked {
+    background-color: rgb(252 228 236); /* LightGray */
+    border-color: #fce4ec;
+    cursor: not-allowed;
+    padding-left: 0px;
+    color: #909090;
+}
+
+.hanzi-item.locked::after {
+    content: '';
+    position: absolute;
+    font-size: 1.5em;
+    /* color: #696969; */
+    width: 30%;
+    height: 60%;
+    right: 0;
+    bottom: -6px;
+    background: url(../img/nezha.png) no-repeat center center;
+    background-size: auto 90%;
+    opacity: 1;
+}
+
+.hanzi-item:not(.locked):hover {
+    background-color: #ffcccb; /* Light red */
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.hanzi-item.correct {
+    background-color: #90ee90; 
+    border-color: #32cd32;
+}
+
+.hanzi-item.wrong {
+    background-color: #ffb6c1; 
+    border-color: #ff0000;
+}
+
+
+
+#learning-section {
+    margin-bottom: 20px;
+}
+
+.character-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.nav-button {
+    background-color: #ff9a8b;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    font-size: 2em;
+    border-radius: 15px;
+    cursor: pointer;
+    margin: 0 15px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-button:hover {
+    background-color: #ff6f91;
+}
+
+.char-card {
+    background-color: #e0f2f7; 
+    border-radius: 20px;
+    padding: 20px 40px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+    min-width: 250px;
+}
+
+.big-char {
+    font-size: 8em; 
+    font-weight: bold;
+    color: #4CAF50; 
+    margin-bottom: 10px;
+    line-height: 1; 
+    cursor: pointer;
+}
+
+.pinyin {
+    font-size: 2.5em;
+    color: #FFC107; 
+    margin-bottom: 5px;
+}
+
+.meaning {
+    font-size: 1.5em;
+    color: #7B1FA2; 
+    margin-bottom: 20px;
+}
+
+.play-button {
+    background-color: #9c27b0;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.2em;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.play-button:hover {
+    background-color: #6a1b9a;
+}
+
+.instructions {
+    font-size: 1.3em;
+    color: #0078d7;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.game-selection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.game-button {
+    position: relative;
+    background-color: #66bb6a;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.5em;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    flex-grow: 1;
+    max-width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.game-button.own {
+    background-color: #ff9a8b;
+}
+.game-button.own:after {
+        content: '';
+    position: absolute;
+    bottom: 11px;
+    right: 0;
+    width: 30px;
+    height: 36px;
+    background: url('../img/step.webp') no-repeat center center;
+    background-size: auto 100%;
+}
+
+.game-button:hover {
+    background-color: #4CAF50;
+    transform: translateY(-3px);
+}
+
+
+#game-section {
+    background-color: #fff9c4; 
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+}
+
+#game-section h2 {
+    color: #FF9800;
+    font-size: 2.5em;
+    margin-bottom: 25px;
+}
+
+#game-content {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 25px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+#game-content .question-text {
+    font-size: 3em;
+    font-weight: bold;
+    color: #00BCD4;
+    margin-bottom: 20px;
+}
+
+#game-content .options-grid {
+    /* display: grid; */
+    /* grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); */
+    gap: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 600px;
+}
+
+.option-button {
+    flex: 1;
+    background-color: #81c784;
+    color: white;
+    border: none;
+    padding: 15px 10px;
+    font-size: 2.3em;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    word-break: break-word;
+}
+
+.option-button:hover {
+    background-color: #66bb6a;
+    transform: translateY(-2px);
+}
+
+.option-button.correct {
+    background-color: #4CAF50; 
+}
+
+.option-button.wrong {
+    background-color: #FF5252;
+}
+
+.game-feedback {
+    min-height: 40px;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+#feedback-icon {
+    margin-right: 10px;
+}
+#feedback-text {
+    color: #555;
+}
+#feedback-text b {
+    color: #4CAF50;
+}
+
+.game-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.action-button {
+    background-color: #FFAB40; 
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.2em;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.action-button:hover {
+    background-color: #FF8F00;
+}
+
+#stroke-ani {
+    border: 1px solid #FFAB40;
+}
+#stroke-write {
+    border: 1px solid #66bb6a;
+}
+.draw-box {
+    /* max-width: 18vw; */
+    height: 26vw;
+    max-height: 390px;
+    margin: 0 auto;
+    position: relative;
+    border: 2px solid #FF5252;
+    margin-right: 3vw;
+}
+.draw-box img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.draw-box span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90%;
+    background-color: #fff;
+    transition: all .3s;
+}
+.draw-wrap .option-button {
+    padding: 5px 10px;
+    margin: 6px 0;
+}
+
+.hidden {
+    display: none !important;
+}
+
+footer {
+    margin-top: 40px;
+    color: #aaa;
+    font-size: 0.9em;
+}
+
+@media (orientation: portrait) {
+  .draw-box {
+    width: 25vw;
+    height: 34vw;
+  }
+}
+/* 小于500宽度的样式 */
+@media (max-width: 500px) {
+    .container {
+        padding: 15px;
+    }
+    .game-button {
+        font-size: 1em;
+        padding: 10px;
+    }
+    .game-feedback {
+        font-size: 1.2em;
+    }
+    #game-content .question-text {
+        font-size: 2em;
+    }
+    .option-button {
+        font-size: 1.5em;
+        padding: 10px;
+    }
+    .action-button {
+        font-size: 1em;
+        padding: 10px 20px;
+    }
+    .draw-box {
+        width: 40vw;
+        height: 56vw;
+        max-height: auto;
+    }
+    header h1 {
+        font-size: 2.2em;
+    }
+}
