@@ -440,10 +440,6 @@ header p {
 #stroke-write:before, #stroke-ani:before{ content: ''; position: absolute; z-index: 0; top: 50%; left: 0; width: 100%; height: 0; border-top: 1px dashed #999;}
 #stroke-write:after, #stroke-ani:after{ content: ''; position: absolute; z-index: 0; top: 0; left: 50%; width: 0px; height: 100%; border-left: 1px dashed #999;}
 .draw-box {
-    /* max-width: 18vw; */
-    width: 18vw;
-    height: 26vw;
-    max-height: 390px;
     margin: 0 auto;
     position: relative;
     border: 2px solid #FF5252;
@@ -451,8 +447,10 @@ header p {
 }
 .draw-box img {
     display: block;
-    width: 100%;
-    height: 100%;
+    /* max-width: 18vw; */
+    /* width: 18vw; */
+    height: 32vw;
+    max-height: 390px;
 }
 .draw-box span {
     position: absolute;
@@ -478,12 +476,19 @@ footer {
     font-size: 0.9em;
 }
 
-@media (orientation: portrait) {
-  .draw-box {
-    width: 25vw;
-    height: 34vw;
+@media (min-width: 700px) {
+  /* .draw-box img{
+    height: 30vw;
+    max-height: 390px;
+  } */
+}
+@media (orientation: landscape) {
+  .draw-box img{
+    height: 23vw;
+    max-height: 250px;
   }
 }
+
 /* 小于500宽度的样式 */
 @media (max-width: 500px) {
     .container {
@@ -507,12 +512,15 @@ footer {
         font-size: 1em;
         padding: 10px 20px;
     }
-    .draw-box {
+    .draw-box img{
         width: 40vw;
         height: 56vw;
         max-height: auto;
     }
     header h1 {
         font-size: 2.2em;
+    }
+    #game-section h2 {
+        font-size: 2.3em;
     }
 }
