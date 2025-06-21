@@ -13,7 +13,7 @@
     <div class="body-bg"></div>
     <div class="container">
       <img class="audio-img" :class="{ off: !bgPlay }" @click="toggleBg" src="img/audio.png" alt="">
-      <div class="go-top" @click="goTop">👆</div>
+      <div class="go-top" @click="goTop" v-show="hanziShow">👆</div>
       <div class="mask flex-center" v-if="notStart">
         <button class="game-button" @click="startApp">开始学习</button>
       </div>

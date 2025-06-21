@@ -33,7 +33,7 @@ function loadScripts() {
  function speakText(text, times) {
     if (window.speechSynthesis) {
         times = times || 1;
-        const utterance = new SpeechSynthesisUtterance(new Array(times).fill(text).join("。 "));
+        const utterance = new SpeechSynthesisUtterance(new Array(times).fill(text).join(", 。 "));
         utterance.lang = "zh-CN";
         utterance.rate = 0.7; // 语速（0.1-10，默认1）
         utterance.pitch = 1; // 音高（0-2，默认1）
