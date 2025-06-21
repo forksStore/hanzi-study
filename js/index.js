@@ -33,6 +33,13 @@ Vue.createApp({
     this.audioBg = document.getElementById('audioBg')
     loadScripts()
     document.querySelector(`#hanzi-list > .hanzi-item:nth-of-type(${this.lockInd + 1})`).scrollIntoView({ behavior: 'smooth', block: 'center' })
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden || document.visibilityState === 'hidden') {
+        if (this.bgPlay) this.audioBg.pause()
+      } else {
+        if (this.bgPlay) this.audioBg.play()
+      }
+    });
   },
   methods: {
     speakText: speakText,
