@@ -4,6 +4,7 @@ body {
     background-color: #fce4ec;
     color: #333;
     position: relative;
+    overflow: hidden;
 }
 .body-bg {
     position: absolute;
@@ -20,6 +21,9 @@ body {
     padding: 6px 20px;
 }
 
+[v-cloak] {
+    display: none !important;
+}
 .text-center { text-align: center; }
 .text-right { text-align: right; }
 .flex { display: flex; }
@@ -158,6 +162,9 @@ header p {
     align-items: center;
     height: 100px; /* fixed height for hanzi items */
     color: #4CAF50;
+}
+.hanzi-item.on {
+    background: #ffca87;
 }
 
 .hanzi-item.locked {
@@ -391,7 +398,7 @@ header p {
 }
 
 .game-feedback {
-    min-height: 40px;
+    min-height: 1.8em;
     margin-bottom: 20px;
     font-size: 1.8em;
     font-weight: bold;
@@ -494,19 +501,26 @@ footer {
     .container {
         padding: 15px;
     }
+    #game-section {
+        padding: 16px 10px;
+    }
     .game-button {
         font-size: 1em;
         padding: 10px;
     }
+    #game-content {
+        padding: 16px 10px;
+    }
     .game-feedback {
         font-size: 1.2em;
+        margin-bottom: 10px;
     }
     #game-content .question-text {
         font-size: 2em;
     }
     .option-button {
         font-size: 1.5em;
-        padding: 10px;
+        padding: 10px 6px;
     }
     .action-button {
         font-size: 1em;
@@ -519,8 +533,23 @@ footer {
     }
     header h1 {
         font-size: 2.2em;
+        margin-bottom: 20px;
     }
     #game-section h2 {
-        font-size: 2.3em;
+        font-size: 2.2em;
+        margin-bottom: 10px;
+    }
+    .hanzi-list {
+        grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
+        height: 67vh;
+    }
+    .big-char {
+        font-size: 6em;
+    }
+    .pinyin {
+        font-size: 2em;
+    }
+    .instructions {
+        margin-top: 16px;
     }
 }

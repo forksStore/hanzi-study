@@ -27,17 +27,17 @@ Vue.createApp({
   created() {
     this.lockInd = getStorage('lockInd') || 0
     this.bgPlay = getStorage('bgPlay') === null ? true : getStorage('bgPlay')
-    if (!this.bgPlay) this.notStart = false
+    // if (!this.bgPlay) this.notStart = false
   },
   mounted() {
     this.audioBg = document.getElementById('audioBg')
     loadScripts()
-    document.querySelector(`#hanzi-list > .hanzi-item:nth-of-type(${this.lockInd + 1})`).scrollIntoView({ behavior: 'smooth', block: 'center' })
+    setTimeout(() => this.goTop(), 1000)
     document.addEventListener("visibilitychange", () => {
       if (document.hidden || document.visibilityState === 'hidden') {
-        if (this.bgPlay) this.audioBg.pause()
+        if (this.bgPlay && this.hanziShow) this.audioBg.pause()
       } else {
-        if (this.bgPlay) this.audioBg.play()
+        if (this.bgPlay && this.hanziShow) this.audioBg.play()
       }
     });
   },
@@ -53,7 +53,8 @@ Vue.createApp({
       }
     },
     goTop() {
-      document.getElementById('hanzi-list').scrollTo({ top: 0, behavior: 'smooth'});
+      // document.getElementById('hanzi-list').scrollTo({ top: 0, behavior: 'smooth'});
+      document.querySelector(`#hanzi-list > .hanzi-item:nth-of-type(${this.lockInd + 1})`).scrollIntoView({ behavior: 'smooth', block: 'nearest' })
     },
     startApp() {
       this.notStart = false

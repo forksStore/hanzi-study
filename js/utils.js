@@ -40,7 +40,7 @@ function loadScripts() {
         // volume：音量（0-1，默认1）
         speechSynthesis.speak(utterance);
     } else {
-        alert("您的浏览器不支持语音合成功能。");
+        alert("您的浏览器不支持语音合成功能，推荐使用谷歌浏览器。");
     }
 }
 

@@ -12,13 +12,13 @@
 </head>
 
 <body>
-  <div id="app" class="flex-center">
+  <div id="app" class="flex-center" v-cloak>
     <div class="body-bg"></div>
     <div class="container">
       <img class="audio-img" :class="{ off: !bgPlay }" @click="toggleBg" src="img/audio.png" alt="">
       <div class="go-top" @click="goTop" v-show="hanziShow">👆</div>
       <div class="mask flex-center" v-if="notStart">
-        <button class="game-button" @click="startApp">开始学习</button>
+        <button class="game-button" @click="startApp">开始学习, 当前进度: {{ lockInd }} / {{ list.length }}</button>
       </div>
       <header>
         <!-- 🐻  -->
@@ -28,7 +28,7 @@
 
       <div id="hanzi-section" v-show="hanziShow">
         <div class="hanzi-list" id="hanzi-list">
-          <div class="hanzi-item" :class="{locked: lockInd < ind}" v-for="(item, ind) in list" :key="ind" @click="hanziClick(item, ind)">
+          <div class="hanzi-item" :class="{locked: lockInd < ind, on: lockInd == ind}" v-for="(item, ind) in list" :key="ind" @click="hanziClick(item, ind)">
             {{ item.w }}
           </div>
         </div>
