@@ -157,7 +157,10 @@ Vue.createApp({
           playAudio('correct-stroke')
           this.gameStatus = 'correct'
           if (!this.gameStep.includes(3)) this.gameStep.push(3)
-          this.addLockInd()
+          if (this.currInd == this.lockInd) {
+            this.addLockInd()
+            setTimeout(() => this.goBack(1), 1000)
+          }
         }
 
       } else {
