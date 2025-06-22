@@ -1,10 +1,14 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-user-select: none; user-select: none;}
 body {
     font-family: 'Noto Sans SC', sans-serif; 
     background-color: #fce4ec;
     color: #333;
     position: relative;
     overflow: hidden;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Chrome, Opera, and others */
 }
 .body-bg {
     position: absolute;
