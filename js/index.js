@@ -119,7 +119,7 @@ Vue.createApp({
         }
         if (type === 'draw') {
           setTimeout(() => speakText(this.currItem.w, 3), 3400)
-          let len = 33
+          let len = 66
           // 随机一个
           this.drawImg = `./img/draw/draw${Math.floor(Math.random() * len + 1)}.webp`
           this.drawStatus = 10
