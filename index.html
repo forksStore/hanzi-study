@@ -19,7 +19,10 @@
       <img class="audio-img" :class="{ off: !bgPlay }" @click="toggleBg" src="img/audio.png" alt="">
       <div class="go-top" @click="goTop" v-show="hanziShow">👆</div>
       <div class="mask flex-center" v-if="notStart">
-        <button class="game-button" @click="startApp">开始学习, 当前进度: {{ lockInd }} / {{ list.length }}</button>
+        <div>
+          <div><button class="game-button mb10" @click="startApp">开始学习, 当前进度: {{ lockInd }} / {{ list.length }}</button></div>
+          <div><button class="game-button own" @click="goMath">学习数学</button></div>
+        </div>
       </div>
       <header>
         <!-- 🐻  -->

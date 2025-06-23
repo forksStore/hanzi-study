@@ -31,13 +31,14 @@ Vue.createApp({
   },
   mounted() {
     this.audioBg = document.getElementById('audioBg')
+    this.audioBg.volume = 0.3
     loadScripts()
     setTimeout(() => this.goTop(), 1000)
     document.addEventListener("visibilitychange", () => {
       if (document.hidden || document.visibilityState === 'hidden') {
-        if (this.bgPlay && this.hanziShow) this.audioBg.pause()
+        if (this.bgPlay && this.hanziShow) this.playBg()
       } else {
-        if (this.bgPlay && this.hanziShow) this.audioBg.play()
+        if (this.bgPlay && this.hanziShow) this.playBg(true)
       }
     });
   },
@@ -47,6 +48,13 @@ Vue.createApp({
       this.bgPlay = !this.bgPlay
       setStorage('bgPlay', this.bgPlay)
       if (this.bgPlay) {
+        this.playBg(true)
+      } else {
+        this.playBg()
+      }
+    },
+    playBg(isPlay) {
+      if (isPlay === true) {
         this.audioBg.play()
       } else {
         this.audioBg.pause()
@@ -58,7 +66,7 @@ Vue.createApp({
     },
     startApp() {
       this.notStart = false
-      this.bgPlay && this.audioBg.play()
+      this.bgPlay && this.playBg(true)
     },
     goBack(step) {
       playAudio('click')
@@ -68,7 +76,7 @@ Vue.createApp({
       this.gameStatus = null
       this.strokeStatus = null
       this.drawStatus = null
-      if (step == 1 && this.bgPlay) this.audioBg.play()
+      if (step == 1 && this.bgPlay) this.playBg(true)
     },
     hanziClick(item, ind) {
       if (this.lockInd < ind) return playAudio('lock') && myAlert('小朋友请先学习前面的汉字哦~', 10);
@@ -183,6 +191,9 @@ Vue.createApp({
           location.reload()
         }
       }
+    },
+    goMath() {
+      window.location.href = './math/index.html'
     }
   },
 }).mount('#app')
