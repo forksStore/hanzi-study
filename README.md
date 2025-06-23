@@ -13,3 +13,6 @@
 - <img src="https://gcore.jsdelivr.net/gh/dhjz/hanzi-study@master/appimg/app2.jpg" style="width: 340px;"/>
 - <img src="https://gcore.jsdelivr.net/gh/dhjz/hanzi-study@master/appimg/app3.jpg" style="width: 340px;"/>
 - <img src="https://gcore.jsdelivr.net/gh/dhjz/hanzi-study@master/appimg/app4.jpg" style="width: 340px;"/>
+
+- 项目地址: [https://github.com/dhjz/hanzi-study]( https://github.com/dhjz/hanzi-study)  
+- 预览地址: 
