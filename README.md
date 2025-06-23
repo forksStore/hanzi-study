@@ -60,4 +60,4 @@ docker-compose restart
 - <img src="https://gcore.jsdelivr.net/gh/dhjz/hanzi-study@master/appimg/app5.jpg" style="width: 340px;"/>
 
 - 项目地址: [https://github.com/dhjz/hanzi-study]( https://github.com/dhjz/hanzi-study)  
-- 预览地址: 
+- 预览地址: [https://dhjz.github.io/hanzi-study/](https://dhjz.github.io/hanzi-study/)
