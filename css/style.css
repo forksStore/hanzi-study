@@ -435,6 +435,10 @@ header p {
     transition: background-color 0.3s ease;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+.action-button span {
+    position: relative;
+    top: -2px;
+}
 
 .action-button:hover {
     background-color: #FF8F00;
