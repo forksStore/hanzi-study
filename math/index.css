@@ -55,7 +55,7 @@ button:active {
 }
 
 .main-content {
-  height: calc(100vh - 70px - 140px);
+  height: calc(100vh - 70px - 160px);
   overflow: auto;   
   padding: 0 10px 0 10px;
 }
@@ -185,7 +185,7 @@ button:active {
     font-size: 40px;
   }
   .main-content {
-    height: calc(100vh - 70px - 160px);
+    height: calc(100vh - 70px - 180px);
   }
   .number-pad button.btn-img {
     font-size: 22px;
