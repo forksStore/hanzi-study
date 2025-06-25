@@ -12,11 +12,12 @@
   <link rel="stylesheet" href="./css/style.css">
 </head>
 
-<body>
-  <div id="app" class="flex-center" v-cloak>
+<body id="body">
+  <div id="app" class="flex-center" :class="['theme-' + theme]" v-cloak>
     <div class="body-bg"></div>
     <div class="container">
-      <img class="audio-img" :class="{ off: !bgPlay }" @click="toggleBg" src="img/audio.png" alt="">
+      <div class="btn-top btn-theme" @click="changeTheme">🍀</div>
+      <img class="btn-top audio-img" :class="{ off: !bgPlay }" @click="toggleBg" src="img/audio.png" alt="">
       <div class="go-top" @click="goTop" v-show="hanziShow">👆</div>
       <div class="mask flex-center" v-if="notStart">
         <div>

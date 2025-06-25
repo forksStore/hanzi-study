@@ -21,12 +21,14 @@ Vue.createApp({
       strokeStatus: null, // [0, 1]
       drawStatus: null, // 1 - 100
       drawImg: null,
-      audioBg: null
+      audioBg: null,
+      theme: 'default', // default green
     }
   },
   created() {
     this.lockInd = getStorage('lockInd') || 0
     this.bgPlay = getStorage('bgPlay') === null ? true : getStorage('bgPlay')
+    this.theme = getStorage('theme') || 'default'
     // if (!this.bgPlay) this.notStart = false
   },
   mounted() {
@@ -44,6 +46,10 @@ Vue.createApp({
   },
   methods: {
     speakText: speakText,
+    changeTheme() {
+      this.theme = this.theme === 'default' ? 'green' : 'default'
+      setStorage('theme', this.theme)
+    },
     toggleBg() {
       this.bgPlay = !this.bgPlay
       setStorage('bgPlay', this.bgPlay)
@@ -196,4 +202,4 @@ Vue.createApp({
       window.location.href = './math/index.html'
     }
   },
-}).mount('#app')
+}).mount('body')
