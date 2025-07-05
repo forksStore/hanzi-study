@@ -10,19 +10,33 @@ body {
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Chrome, Opera, and others */
 }
+#app {
+    min-height: 100vh;
+    margin: 0;
+    padding: 6px 20px;
+    --color-page-body: #fff;
+    /* --color-theme: #66bb6a; */
+    --color-theme: #4CAF50; 
+
+}
+#app.theme-green {
+    --color-bg: #F5FAF5;
+    --color-page-body: #FAFAF7;
+    --color-theme: #538063;
+    --color-btn-bg: var(--color-theme);
+    --color-btn-bg1: #E0E0E0;
+    --color-border: #D5E0D8;
+    --color-link: #397D4F;
+    --color-link-hover: #1B5E20;
+}
 .body-bg {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    background: url('../img/bg.webp') no-repeat center center / cover;
+    background: var(--color-page-body);
     filter: blur(5px);
-}
-#app {
-    min-height: 100vh;
-    margin: 0;
-    padding: 6px 20px;
 }
 
 [v-cloak] {
@@ -48,7 +62,7 @@ body {
 .h100{height:100%;}
 
 .container {
-    background-color: #ffffff;
+    background-color: var(--color-page-body);
     border-radius: 20px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     padding: 30px;
@@ -72,13 +86,19 @@ body {
     align-items: center;
     z-index: 9; /* Ensure it's above other content */
 }
-.audio-img {
+.btn-top {
     position: absolute;
     top: 10px;
-    right: 10px;
     z-index: 8;
     width: 30px;
     cursor: pointer;
+}
+.audio-img {
+    right: 10px;
+}
+.btn-theme {
+   left: 10px;
+   opacity: .5;
 }
 .audio-img.off {
     opacity: .3;
@@ -116,7 +136,7 @@ body {
 
 
 header h1 {
-    color: #ff6f91; 
+    color: var(--color-theme); 
     font-size: 3em;
     margin-bottom: 30px;
 }
@@ -151,8 +171,9 @@ header p {
 }
 
 .hanzi-item {
-    background-color: #ffe4e1; /* MistyRose */
-    border: 3px solid #ff6347;
+    background: var(--color-page-body);
+    border: 3px solid #ccc;
+    border-color: var(--color-border);
     border-radius: 15px;
     padding: 15px;
     font-size: 3em;
@@ -164,19 +185,19 @@ header p {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100px; /* fixed height for hanzi items */
-    color: #4CAF50;
+    height: 100px;
+    color: var(--color-theme);
 }
 .hanzi-item.on {
     background: #ffca87;
 }
 
 .hanzi-item.locked {
-    background-color: rgb(252 228 236); /* LightGray */
-    border-color: #fce4ec;
+    background-color: var(--color-bg);
+    border-color: var(--color-border);
     cursor: not-allowed;
     padding-left: 0px;
-    color: #909090;
+    color: #909090 !important;
 }
 
 .hanzi-item.locked::after {
@@ -190,11 +211,11 @@ header p {
     bottom: -6px;
     background: url(../img/nezha.png) no-repeat center center;
     background-size: auto 90%;
-    opacity: 1;
+    opacity: .7;
 }
 
 .hanzi-item:not(.locked):hover {
-    background-color: #ffcccb; /* Light red */
+    background-color: #ffcccb; 
     transform: scale(1.05);
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
@@ -208,7 +229,6 @@ header p {
     background-color: #ffb6c1; 
     border-color: #ff0000;
 }
-
 
 
 #learning-section {
@@ -249,7 +269,7 @@ header p {
 .big-char {
     font-size: 8em; 
     font-weight: bold;
-    color: #4CAF50; 
+    color: var(--color-theme); 
     margin-bottom: 10px;
     line-height: 1; 
     cursor: pointer;
@@ -257,19 +277,19 @@ header p {
 
 .pinyin {
     font-size: 2.5em;
-    color: #FFC107; 
+    color: var(--color-theme); 
     margin-bottom: 5px;
 }
 
 .meaning {
     font-size: 1.5em;
-    color: #7B1FA2; 
+    color: var(--color-theme); 
     margin-bottom: 20px;
 }
 
 .play-button {
-    background-color: #9c27b0;
-    color: white;
+    background-color: var(--color-btn-bg1);
+    color: #666666;
     border: none;
     padding: 12px 25px;
     font-size: 1.2em;
@@ -284,7 +304,7 @@ header p {
 
 .instructions {
     font-size: 1.3em;
-    color: #0078d7;
+    color: var(--color-theme);
     margin-top: 30px;
     margin-bottom: 20px;
     cursor: pointer;
@@ -299,7 +319,7 @@ header p {
 
 .game-button {
     position: relative;
-    background-color: #66bb6a;
+    background-color: var(--color-theme);
     color: white;
     border: none;
     padding: 15px 30px;
@@ -332,14 +352,14 @@ header p {
 
 
 #game-section {
-    background-color: #fff9c4; 
+    background-color: var(--color-page-body); 
     border-radius: 20px;
     padding: 30px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
 }
 
 #game-section h2 {
-    color: #FF9800;
+    color: var(--color-theme);
     font-size: 2.5em;
     margin-bottom: 25px;
 }
@@ -360,7 +380,7 @@ header p {
 #game-content .question-text {
     font-size: 3em;
     font-weight: bold;
-    color: #00BCD4;
+    color: var(--color-theme);
     margin-bottom: 20px;
 }
 
@@ -376,7 +396,7 @@ header p {
 
 .option-button {
     flex: 1;
-    background-color: #81c784;
+    background-color: var(--color-theme);
     color: white;
     border: none;
     padding: 15px 10px;
@@ -389,7 +409,7 @@ header p {
 }
 
 .option-button:hover {
-    background-color: #66bb6a;
+    background-color: var(--color-theme);
     transform: translateY(-2px);
 }
 
@@ -435,6 +455,10 @@ header p {
     transition: background-color 0.3s ease;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+.action-button span {
+    position: relative;
+    top: -2px;
+}
 
 .action-button:hover {
     background-color: #FF8F00;
@@ -445,7 +469,7 @@ header p {
     position: relative;
 }
 #stroke-write {
-    border: 1px solid #66bb6a;
+    border: 1px solid var(--color-theme);
     position: relative;
 }
 #stroke-write:before, #stroke-ani:before{ content: ''; position: absolute; z-index: 0; top: 50%; left: 0; width: 100%; height: 0; border-top: 1px dashed #999;}
@@ -454,7 +478,11 @@ header p {
     margin: 0 auto;
     position: relative;
     border: 2px solid #FF5252;
+    border-color: var(--color-theme);
     margin-right: 3vw;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 .draw-box img {
     display: block;
@@ -557,3 +585,56 @@ footer {
         margin-top: 16px;
     }
 }
+
+.theme-default .body-bg {
+    background: url('../img/bg.webp') no-repeat center center / cover;
+}
+.theme-default header h1 {
+    color: #ff6f91;
+}
+.theme-default .btn-theme {
+    opacity: 1;
+}
+.theme-default .hanzi-item {
+    background: #ffe4e1;
+    border-color: #ff6347;
+}
+.hanzi-item:not(.locked):hover, .hanzi-item.on {
+    background-color: #b9e7c9;
+}
+.theme-default .hanzi-item.locked {
+    background-color: #fce4ec;
+    border-color: #fce4ec;
+}
+.theme-default .hanzi-item.locked::after {
+    opacity: .7;
+}
+.theme-default .play-button {
+    background: #9c27b0;
+    color: #fff;
+}
+.theme-default #game-section {
+    background: #fff9c4;
+}
+.theme-default .instructions {
+    color: #0078d7;
+}
+.theme-default #game-section h2 {
+    color: #FF9800;
+}
+.theme-default .pinyin {
+    color: #FFC107;
+}
+.theme-default .meaning {
+    color: #7B1FA2;
+}
+.theme-default #game-content .question-text {
+    color: #00BCD4;
+}
+.theme-default .draw-box {
+    border-color: #FF5252;
+}
+.theme-green .action-button {
+    background: #8A7967;
+}
+/* } */

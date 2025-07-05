@@ -12,14 +12,18 @@
   <link rel="stylesheet" href="./css/style.css">
 </head>
 
-<body>
-  <div id="app" class="flex-center" v-cloak>
+<body id="body">
+  <div id="app" class="flex-center" :class="['theme-' + theme]" v-cloak>
     <div class="body-bg"></div>
     <div class="container">
-      <img class="audio-img" :class="{ off: !bgPlay }" @click="toggleBg" src="img/audio.png" alt="">
+      <div class="btn-top btn-theme" @click="changeTheme">🍀</div>
+      <img class="btn-top audio-img" :class="{ off: !bgPlay }" @click="toggleBg" src="img/audio.png" alt="">
       <div class="go-top" @click="goTop" v-show="hanziShow">👆</div>
       <div class="mask flex-center" v-if="notStart">
-        <button class="game-button" @click="startApp">开始学习, 当前进度: {{ lockInd }} / {{ list.length }}</button>
+        <div>
+          <div><button class="game-button mb10" @click="startApp">开始学习, 当前进度: {{ lockInd }} / {{ list.length }}</button></div>
+          <div><button class="game-button own w100" @click="goMath">学习数学</button></div>
+        </div>
       </div>
       <header>
         <!-- 🐻  -->
@@ -55,7 +59,7 @@
           <!-- <button class="game-button" data-game="pinyin_match">🧩 拼音匹配</button> -->
         </div>
         <div class="game-actions">
-          <button @click="goBack(1)" class="action-button">返回列表</button>
+          <button @click="goBack(1)" class="action-button"><span>👈</span> 返回列表</button>
         </div>
       </main>
 
@@ -98,7 +102,7 @@
         </div>
         <div class="game-actions">
           <button id="nextQuestion" class="action-button hidden">下一题</button>
-          <button @click="goBack(2)" class="action-button">返回学习</button>
+          <button @click="goBack(2)" class="action-button"><span>👈</span> 返回学习</button>
         </div>
       </section>
 
